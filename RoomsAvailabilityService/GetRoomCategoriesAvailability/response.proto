@@ -1,0 +1,16 @@
+﻿syntax = "proto3";
+package GetRoomCategoriesAvailability;
+
+message Response {
+  repeated RoomCategory roomCategories = 1;
+}
+
+message RoomCategory {
+  int32 id = 1;
+  optional RoomCategoryAvailabilityInfo InfoIfAvailable = 2;
+}
+
+message RoomCategoryAvailabilityInfo {
+  string averagePriceForPeriod = 1;
+  int32 minAvailableRoomsNumber = 2;
+}

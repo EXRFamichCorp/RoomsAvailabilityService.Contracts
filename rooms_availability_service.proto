@@ -1,0 +1,29 @@
+syntax = "proto3";
+package RoomsAvailability;
+
+import "google/protobuf/timestamp.proto";
+
+message GetRoomCategoriesAvailabilityRequest {
+    string hotelId = 1;
+    google.protobuf.Timestamp checkInDate = 2;
+    google.protobuf.Timestamp checkOutDate = 3;
+    int32 requiredRoomsNumber = 4;
+}
+
+message GetRoomCategoriesAvailabilityResponse {
+    repeated RoomCategory roomCategories = 1;
+}
+
+message RoomCategory {
+    int32 id = 1;
+    optional RoomCategoryAvailabilityInfo InfoIfAvailable = 2;
+}
+
+message RoomCategoryAvailabilityInfo {
+    string averagePriceForPeriod = 1;
+    int32 minAvailableRoomsNumber = 2;
+}
+
+service RoomsAvailabilityService {
+    rpc GetRoomCategoriesAvailability(GetRoomCategoriesAvailabilityRequest) returns (GetRoomCategoriesAvailabilityResponse);
+} 

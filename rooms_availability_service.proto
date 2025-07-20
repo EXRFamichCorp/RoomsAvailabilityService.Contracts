@@ -3,7 +3,7 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "google/type/decimal.proto";
 
-message GetAvailableRoomCategoriesRequest {
+message GetRoomCategoriesRequest {
      string hotelId = 1;
      google.protobuf.Timestamp checkInDate = 2;
      google.protobuf.Timestamp checkOutDate = 3; 
@@ -11,17 +11,21 @@ message GetAvailableRoomCategoriesRequest {
 }
 
 
-message GetAvailableRoomCategoriesResponse {
-     repeated AvailableRoomCategoryDTO roomCategories
+message GetRoomCategoriesResponse {
+     repeated RoomCategoryDTO roomCategories
 } 
 
-message AvailableRoomCategoryDTO {
+message RoomCategoryDTO {
      int32 id = 1;
-     google.type.Decimal averagePriceForPeriod = 2;
-     int32 minAvailableRoomsNumber = 3;
+     optional RoomCategoryInfo InfoIfAvailable
+}
+
+message RoomCategoryInfo {
+     google.type.Decimal averagePriceForPeriod = 1;
+     int32 minAvailableRoomsNumber = 2;
 }
 
 
 service RoomsAvailabilityService {
-    rpc GetAvailableRoomCategories (GetAvailableRoomCategoriesRequest) returns (GetAvailableRoomCategoriesResponse);
+    rpc GetRoomCategories (GetRoomCategoriesRequest) returns (GetRoomCategoriesResponse);
 } 

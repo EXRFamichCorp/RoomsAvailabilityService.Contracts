@@ -12,12 +12,12 @@ message GetRoomCategoriesRequest {
 
 
 message GetRoomCategoriesResponse {
-     repeated RoomCategoryDTO roomCategories
+     repeated RoomCategoryDTO roomCategories = 1;
 } 
 
 message RoomCategoryDTO {
      int32 id = 1;
-     optional RoomCategoryInfo InfoIfAvailable
+     optional RoomCategoryInfo InfoIfAvailable = 2;
 }
 
 message RoomCategoryInfo {

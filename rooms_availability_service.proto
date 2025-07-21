@@ -11,17 +11,13 @@ message GetRoomCategoriesAvailabilityRequest {
 }
 
 message GetRoomCategoriesAvailabilityResponse {
-    repeated RoomCategory roomCategories = 1;
-}
-
-message RoomCategory {
-    int32 id = 1;
-    optional RoomCategoryAvailabilityInfo InfoIfAvailable = 2;
+    repeated RoomCategoryAvailabilityInfo roomCategories = 1;
 }
 
 message RoomCategoryAvailabilityInfo {
-    string averagePriceForPeriod = 1;
-    int32 minAvailableRoomsNumber = 2;
+    int32 id = 1;
+    string averagePriceForPeriod = 2;
+    int32 minAvailableRoomsNumber = 3;
 }
 
 service RoomsAvailabilityService {
